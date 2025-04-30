@@ -1,0 +1,21 @@
+services:
+  typescript-app:
+    # The main Next.js application service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: typescript-app
+    restart: unless-stopped
+    init: true
+    ports:
+      - "3000:3000"  # Expose Next.js app on port 3000
+    # env_file: ./.env  # Uncomment if .env file exists
+    # If you need to pass non-secret environment variables, add them here:
+    # environment:
+    #   NODE_ENV: production
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    driver: bridge

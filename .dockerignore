@@ -1,0 +1,75 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Test and debug artifacts
+test/
+tests/
+debug/
+*.log
+
+# IDE/editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Version control
+.git/
+.gitignore
+.svn/
+.hg/
+
+# Environment and secrets
+.env*
+*.env
+*.pem
+*.key
+*.crt
+config.local.*
+*.local.yml
+
+# Documentation and markdown
+*.md
+README*
+CONTRIBUTING.md
+LICENSE.txt
+TUTORIAL.md
+
+# Temporary files and folders
+tmp/
+temp/
+*.tmp
+.local/
+local/
+
+# Public assets (if not needed in build)
+# Uncomment if public/ is not required in the image
+# public/
+
+# ESLint and config files (if not needed in build)
+.eslintrc.json
+
+# Example files
+*.example
+
+# Ignore Python, Go, Java artifacts (for completeness)
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+/vendor/
+*.test
+.go-cache/
+target/
+*.class
+.gradle/
+
+# Ignore Docker files (if not needed in build context)
+Dockerfile*
+docker-compose*
