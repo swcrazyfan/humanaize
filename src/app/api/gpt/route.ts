@@ -4,6 +4,8 @@ import { writingSamples } from '../humanaize/utils/samples';
 
 const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 const openAIBaseUrl = process.env.OPEN_AI_BASE_URL || "https://api.openai.com/v1";
+const modelName = process.env.MODEL_NAME;
+const defaultModel = "gpt-4o";
 
 export async function POST(request: Request) {
     try {
@@ -11,6 +13,11 @@ export async function POST(request: Request) {
         console.log("POST /api/gpt");
         const { aiText } = await request.json();
         console.log("User text: ", aiText);
+
+        // Determine which model to use
+        // Use MODEL_NAME if OPEN_AI_BASE_URL is set AND MODEL_NAME is set, otherwise use default
+        const effectiveModel = process.env.OPEN_AI_BASE_URL && modelName ? modelName : defaultModel;
+        console.log(`Using model: ${effectiveModel}`);
 
         // Construct the target URL using the base URL
         const targetUrl = `${openAIBaseUrl}/chat/completions`;
@@ -23,7 +30,7 @@ export async function POST(request: Request) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                model: "gpt-4o",
+                model: effectiveModel, // Use the determined model
                 messages: [
                     { role: "system", content: systemPrompt },
                     ...writingSamples,
