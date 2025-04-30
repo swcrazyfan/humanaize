@@ -9,7 +9,7 @@ services:
     init: true
     ports:
       - "3000:3000"  # Expose Next.js app on port 3000
-    # env_file: ./.env  # Uncomment if .env file exists
+    env_file: ./.env  # Uncomment if .env file exists
     # If you need to pass non-secret environment variables, add them here:
     # environment:
     #   NODE_ENV: production
