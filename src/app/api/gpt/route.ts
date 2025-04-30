@@ -3,6 +3,7 @@ import { systemPrompt } from '../humanaize/utils/instr';
 import { writingSamples } from '../humanaize/utils/samples';
 
 const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+const openAIBaseUrl = process.env.OPEN_AI_BASE_URL || "https://api.openai.com/v1";
 
 export async function POST(request: Request) {
     try {
@@ -11,7 +12,11 @@ export async function POST(request: Request) {
         const { aiText } = await request.json();
         console.log("User text: ", aiText);
 
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        // Construct the target URL using the base URL
+        const targetUrl = `${openAIBaseUrl}/chat/completions`;
+        console.log("Targeting OpenAI API at:", targetUrl); 
+
+        const response = await fetch(targetUrl, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${apiKey}`,
